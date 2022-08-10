@@ -71,14 +71,16 @@ class _MyHomePageState extends State<MyHomePage> {
     // than having to individually change instances of widgets.
     return DefaultTabController(
         length: 3,
+        initialIndex: 2,
         child: Scaffold(
+          // extendBody: true,
+          extendBodyBehindAppBar: true,
+          backgroundColor: Colors.black,
           appBar: AppBar(
             title: TabBar(
               tabs: [Tab(text: '인기'), Tab(text: '팔로잉'), Tab(text: '추천')],
             ),
-            actions: [
-              IconButton(onPressed: () {}, icon: Icon(Icons.more_vert))
-            ],
+            actions: [IconButton(onPressed: () {}, icon: Icon(Icons.search))],
             leading: IconButton(onPressed: () {}, icon: Icon(Icons.live_tv)),
             backgroundColor: Colors.transparent,
           ),
@@ -87,28 +89,76 @@ class _MyHomePageState extends State<MyHomePage> {
               // in the middle of the parent.
               children: [
                 ListView(
-                  // Column is also a layout widget. It takes a list of children and
-                  // arranges them vertically. By default, it sizes itself to fit its
-                  // children horizontally, and tries to be as tall as its parent.
-                  //
-                  // Invoke "debug painting" (press "p" in the console, choose the
-                  // "Toggle Debug Paint" action from the Flutter Inspector in Android
-                  // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-                  // to see the wireframe for each widget.
-                  //
-                  // Column has various properties to control how it sizes itself and
-                  // how it positions its children. Here we use mainAxisAlignment to
-                  // center the children vertically; the main axis here is the vertical
-                  // axis because Columns are vertical (the cross axis would be
-                  // horizontal).
-                  // mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                    Stack(
+                        fit: StackFit.passthrough,
+                        alignment: Alignment.bottomCenter,
+                        children: [
+                          Image.network(
+                              'https://img8.yna.co.kr/photo/etc/af/2022/08/01/PAF20220801003601009_P2.jpg',
+                              fit: BoxFit.fill),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Align(
+                                alignment: Alignment.centerLeft,
+                                child: TextButton(
+                                    onPressed: () {},
+                                    child: Text('@ArunaKang',
+                                        style: TextStyle(color: Colors.white))),
+                              ),
+                              Align(
+                                alignment: Alignment.centerLeft,
+                                child: Text('This is description.',
+                                    style: TextStyle(color: Colors.white)),
+                              ),
+                              Row(
+                                children: [
+                                  TextButton(
+                                      onPressed: () {},
+                                      child: Text('#CR7',
+                                          style:
+                                              TextStyle(color: Colors.white))),
+                                  TextButton(
+                                      onPressed: () {},
+                                      child: Text('#MANU',
+                                          style:
+                                              TextStyle(color: Colors.white))),
+                                ],
+                              )
+                            ],
+                          ),
+                          Container(
+                            alignment: Alignment.bottomRight,
+                            child: Column(
+                              children: [
+                                // todo: add an image button
+                                IconButton(
+                                    onPressed: () {},
+                                    icon: Icon(Icons.favorite,
+                                        color: Colors.white)),
+                                IconButton(
+                                    onPressed: () {},
+                                    icon:
+                                        Icon(Icons.chat, color: Colors.white)),
+                                IconButton(
+                                    onPressed: () {},
+                                    icon: Icon(Icons.bookmark,
+                                        color: Colors.white)),
+                                IconButton(
+                                    onPressed: () {},
+                                    icon:
+                                        Icon(Icons.reply, color: Colors.white))
+                              ],
+                            ),
+                          )
+                        ]),
                     Image.network(
-                        'https://img8.yna.co.kr/photo/etc/af/2022/08/01/PAF20220801003601009_P2.jpg'),
+                        'https://img8.yna.co.kr/photo/etc/af/2022/08/01/PAF20220801003601009_P2.jpg',
+                        fit: BoxFit.fill),
                     Image.network(
-                        'https://img8.yna.co.kr/photo/etc/af/2022/08/01/PAF20220801003601009_P2.jpg'),
-                    Image.network(
-                        'https://img8.yna.co.kr/photo/etc/af/2022/08/01/PAF20220801003601009_P2.jpg'),
+                        'https://img8.yna.co.kr/photo/etc/af/2022/08/01/PAF20220801003601009_P2.jpg',
+                        fit: BoxFit.fill),
                   ],
                 ),
                 ListView(
@@ -167,6 +217,68 @@ class _MyHomePageState extends State<MyHomePage> {
           //   tooltip: 'Increment',
           //   child: const Icon(Icons.add),
           // ), // This trailing comma makes auto-formatting nicer for build methods.
+          extendBody: true,
+          bottomNavigationBar: NavigationBar(
+            destinations: [
+              InkWell(
+                onTap: () {},
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.home_outlined,
+                      color: Colors.white,
+                    ),
+                    Text(
+                      '홈',
+                      style: TextStyle(color: Colors.white),
+                    )
+                  ],
+                ),
+              ),
+              InkWell(
+                onTap: () {},
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(Icons.people_outline, color: Colors.white),
+                    Text(
+                      '친구',
+                      style: TextStyle(color: Colors.white),
+                    )
+                  ],
+                ),
+              ),
+              InkWell(
+                onTap: () {},
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [Icon(Icons.add_box_outlined, color: Colors.white)],
+                ),
+              ),
+              InkWell(
+                onTap: () {},
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(Icons.add_alert_outlined, color: Colors.white),
+                    Text('알림', style: TextStyle(color: Colors.white))
+                  ],
+                ),
+              ),
+              InkWell(
+                onTap: () {},
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(Icons.account_box_outlined, color: Colors.white),
+                    Text('프로필', style: TextStyle(color: Colors.white))
+                  ],
+                ),
+              ),
+            ],
+            backgroundColor: Colors.transparent,
+          ),
         ));
   }
 }
